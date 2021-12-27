@@ -14,13 +14,9 @@ package 'git' do
   action :install
 end
 
-file 'etc/motd' do
-  content "Welcome, John!
-  HOSTNAME: #{node['hostname']}
-  IPADDRES: #{node['ipaddress']}
-  CPU: #{node['cpu']['0']['mhz']}
-  MEMORY: #{node['memory']['total']}
-"
+template '/etc/motd' do
+  source 'motd.erb'
+
   owner 'root'
   group 'root'
 end
